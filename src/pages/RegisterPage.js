@@ -29,15 +29,15 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   const { register } = useAuth();
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
+  const handleChange = (event) => {
+    const { name, value, files } = event.target;
 
     if (name === "image" && files && files[0]) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setFormData((prev) => ({
           ...prev,
-          image: reader.result, // base64 string
+          image: reader.result,
         }));
       };
       reader.readAsDataURL(files[0]);
@@ -49,8 +49,8 @@ const RegisterPage = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     setError("");
     setLoading(true);
 
@@ -62,15 +62,15 @@ const RegisterPage = () => {
 
     try {
       const { confirmPassword, ...userData } = formData;
-      const result = await register(userData); // Make sure this calls the backend route
+      const result = await register(userData);
 
       if (result.success) {
         navigate("/login");
       } else {
         setError(result.message || "Registration failed");
       }
-    } catch (err) {
-      console.error(err);
+    } catch (errorCaught) {
+      console.error("Error during registration:", errorCaught);
       setError("An unexpected error occurred");
     } finally {
       setLoading(false);
@@ -101,6 +101,8 @@ const RegisterPage = () => {
               {error}
             </div>
           )}
+
+          {/* Basic Info */}
           {[
             { label: "Full Name", name: "name", type: "text" },
             { label: "Email address", name: "email", type: "email" },
@@ -130,6 +132,7 @@ const RegisterPage = () => {
             </div>
           ))}
 
+          {/* Additional Info */}
           {[
             { label: "Father Name", name: "fatherName", type: "text" },
             { label: "Date of Birth", name: "dob", type: "date" },
@@ -162,6 +165,7 @@ const RegisterPage = () => {
             </div>
           ))}
 
+          {/* Business Type */}
           <div>
             <label
               htmlFor="businessOption"
@@ -182,6 +186,7 @@ const RegisterPage = () => {
             </select>
           </div>
 
+          {/* Profile Image */}
           <div>
             <label
               htmlFor="image"
@@ -199,6 +204,7 @@ const RegisterPage = () => {
             />
           </div>
 
+          {/* Submit */}
           <div>
             <button
               type="submit"
