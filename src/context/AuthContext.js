@@ -118,7 +118,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, data, {
+      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, userData, {
         withCredentials: true,
       });      
       return { success: true, message: data.message };
