@@ -1,0 +1,35 @@
+/* src/components/Search.css */
+.search-container {
+    max-width: 500px;
+    margin: auto;
+    padding-top: 8%;
+    padding-bottom: 7%;
+    text-align: center;
+    margin-bottom: 0px;
+  }
+  
+  input {
+    width: 80%;
+    padding: 8px;
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 8px 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .search-results {
+    margin-top: 20px;
+  }
+  
+  .search-item {
+    background: #f4f4f4;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+  }
+  
