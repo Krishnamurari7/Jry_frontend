@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(false); 
 
   // Configure axios defaults
-  axios.defaults.baseURL = 'http://localhost:5000';
+  axios.defaults.baseURL = 'http://localhost:5001';
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
@@ -118,7 +118,9 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const { data } = await axios.post('/api/auth/register', userData);
+      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, data, {
+        withCredentials: true,
+      });      
       return { success: true, message: data.message };
     } catch (err) {
       console.error('Registration failed:', err.response?.data?.message || err.message);

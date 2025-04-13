@@ -1,30 +1,30 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    businessName: '',
-    businessOption: '',
-    fatherName: '',
-    dob: '',
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    businessName: "",
+    businessOption: "",
+    fatherName: "",
+    dob: "",
     image: null,
-    post: '',
-    pinCode: '',
-    policeStation: '',
-    district: '',
-    state: '',
-    phoneNo: '',
-    aadharNo: '',
-    panNo: '',
-    villageTown: '',
+    post: "",
+    pinCode: "",
+    policeStation: "",
+    district: "",
+    state: "",
+    phoneNo: "",
+    aadharNo: "",
+    panNo: "",
+    villageTown: "",
   });
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { register } = useAuth();
@@ -51,11 +51,11 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
 
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      setError("Passwords do not match");
       setLoading(false);
       return;
     }
@@ -65,13 +65,13 @@ const RegisterPage = () => {
       const result = await register(userData); // Make sure this calls the backend route
 
       if (result.success) {
-        navigate('/login');
+        navigate("/login");
       } else {
-        setError(result.message || 'Registration failed');
+        setError(result.message || "Registration failed");
       }
     } catch (err) {
       console.error(err);
-      setError('An unexpected error occurred');
+      setError("An unexpected error occurred");
     } finally {
       setLoading(false);
     }
@@ -80,10 +80,15 @@ const RegisterPage = () => {
   return (
     <div className="max-w-md mx-auto pt-10">
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900">Create your account</h2>
+        <h2 className="text-3xl font-bold text-gray-900">
+          Create your account
+        </h2>
         <p className="mt-2 text-sm text-gray-600">
-          Already have an account?{' '}
-          <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="font-medium text-blue-600 hover:text-blue-500"
+          >
             Sign in
           </Link>
         </p>
@@ -100,11 +105,17 @@ const RegisterPage = () => {
             { label: "Full Name", name: "name", type: "text" },
             { label: "Email address", name: "email", type: "email" },
             { label: "Password", name: "password", type: "password" },
-            { label: "Confirm Password", name: "confirmPassword", type: "password" },
-            
+            {
+              label: "Confirm Password",
+              name: "confirmPassword",
+              type: "password",
+            },
           ].map(({ label, name, type }) => (
             <div key={name}>
-              <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor={name}
+                className="block text-sm font-medium text-gray-700"
+              >
                 {label}
               </label>
               <input
@@ -120,29 +131,30 @@ const RegisterPage = () => {
           ))}
 
           {[
-           
             { label: "Father Name", name: "fatherName", type: "text" },
             { label: "Date of Birth", name: "dob", type: "date" },
             { label: "Business Name", name: "businessName", type: "text" },
             { label: "Post", name: "post", type: "text" },
-  { label: "Pin code", name: "pinCode", type: "text" },
-  { label: "Police Station", name: "policeStation", type: "text" },
-  { label: "District", name: "district", type: "text" },
-  { label: "State", name: "state", type: "text" },
-  { label: "Phone No", name: "phoneNo", type: "text" },
-  { label: "Aadhar No", name: "aadharNo", type: "text" },
-  { label: "Pan No", name: "panNo", type: "text" },
-  { label: "Village/Town", name: "villageTown", type: "text" }
+            { label: "Pin code", name: "pinCode", type: "text" },
+            { label: "Police Station", name: "policeStation", type: "text" },
+            { label: "District", name: "district", type: "text" },
+            { label: "State", name: "state", type: "text" },
+            { label: "Phone No", name: "phoneNo", type: "text" },
+            { label: "Aadhar No", name: "aadharNo", type: "text" },
+            { label: "Pan No", name: "panNo", type: "text" },
+            { label: "Village/Town", name: "villageTown", type: "text" },
           ].map(({ label, name, type }) => (
             <div key={name}>
-              <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor={name}
+                className="block text-sm font-medium text-gray-700"
+              >
                 {label}
               </label>
               <input
                 id={name}
                 name={name}
                 type={type}
-                
                 value={formData[name]}
                 onChange={handleChange}
                 className="block w-full px-3 py-2 border rounded-md shadow-sm"
@@ -151,13 +163,15 @@ const RegisterPage = () => {
           ))}
 
           <div>
-            <label htmlFor="businessOption" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="businessOption"
+              className="block text-sm font-medium text-gray-700"
+            >
               Business Type
             </label>
             <select
               id="businessOption"
               name="businessOption"
-              
               value={formData.businessOption}
               onChange={handleChange}
               className="block w-full px-3 py-2 border rounded-md shadow-sm"
@@ -169,7 +183,10 @@ const RegisterPage = () => {
           </div>
 
           <div>
-            <label htmlFor="image" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="image"
+              className="block text-sm font-medium text-gray-700"
+            >
               Profile Image
             </label>
             <input
@@ -187,10 +204,12 @@ const RegisterPage = () => {
               type="submit"
               disabled={loading}
               className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${
-                loading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
+                loading
+                  ? "bg-blue-400 cursor-not-allowed"
+                  : "bg-blue-600 hover:bg-blue-700"
               } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`}
             >
-              {loading ? 'Creating account...' : 'Create account'}
+              {loading ? "Creating account..." : "Create account"}
             </button>
           </div>
         </form>
