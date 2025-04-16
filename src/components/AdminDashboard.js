@@ -66,7 +66,7 @@ const AdminDashboard = () => {
 
       // console.log("Fetching users with token:", token);
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/admin/users/`,
+        "process.env.VITE_API_URL/api/admin/users/",
         {
           headers: {
             Authorization: `Bearer ${token}`,
