@@ -11,7 +11,7 @@ const Connections = () => {
   useEffect(() => {
     const fetchConnections = async () => {
       try {
-        const response = await fetch(`${import.meta.env.REACT_APP_API_URL}/api/connections/`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/connections/`, {
           credentials: 'include'
         });
 

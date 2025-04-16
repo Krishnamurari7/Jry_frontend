@@ -14,7 +14,7 @@ const HomePage = () => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        `${import.meta.env.REACT_APP_API_URL}/api/users/search?email=${searchEmail}`
+        `${import.meta.env.VITE_API_URL}/api/users/search?email=${searchEmail}`
       );
       setSearchResult(response.data);
       setError("");
@@ -33,7 +33,7 @@ const [connections, setConnections] = useState([]);
 const fetchPendingRequests = async () => {
   const token = localStorage.getItem("token");
   try {
-    const response = await axios.get("http://localhost:5000/api/connections", {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/connections`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -61,7 +61,7 @@ useEffect(() => {
       }
   
       await axios.post(
-        `http://localhost:5000/api/connections/request/${userId}`,
+        `${import.meta.env.VITE_API_URL}/api/connections/request/${userId}`,
         {},
         {
           headers: {
@@ -86,7 +86,7 @@ useEffect(() => {
   const handleAccept = async (userId) => {
     const token = localStorage.getItem("token");
     try {
-      await axios.post(`http://localhost:5000/api/connections/accept/${userId}`, {}, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/connections/accept/${userId}`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchPendingRequests(); // refresh list
@@ -98,7 +98,7 @@ useEffect(() => {
   const handleReject = async (userId) => {
     const token = localStorage.getItem("token");
     try {
-      await axios.post(`http://localhost:5000/api/connections/reject/${userId}`, {}, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/connections/reject/${userId}`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchPendingRequests(); // refresh list

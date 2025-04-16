@@ -13,7 +13,7 @@ const Search = () => {
     setError("");
 
     try {
-      const response = await axios.get(`${import.meta.env.REACT_APP_API_URL}/api/users/search?query=${query}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/search?query=${query}`);
       setResults(response.data);
     } catch (err) {
       setError("Error fetching search results");

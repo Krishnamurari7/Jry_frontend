@@ -66,14 +66,14 @@ const AdminDashboard = () => {
 
       // console.log("Fetching users with token:", token);
       const response = await axios.get(
-        "process.env.VITE_API_URL/api/admin/users/",
+        `${import.meta.env.VITE_API_URL}/api/admin/users`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         }
-      );      
+      );
 
       // console.log("Users response:", response.data);
 
@@ -164,7 +164,7 @@ const AdminDashboard = () => {
       }
 
       const response = await axios.post(
-        `${import.meta.env.REACT_APP_API_URL}/api/admin/users`,
+        `${import.meta.env.VITE_API_URL}/api/admin/users`,
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -208,7 +208,7 @@ const AdminDashboard = () => {
       }
 
       const response = await axios.put(
-        `${import.meta.env.REACT_APP_API_URL}/api/admin/users/${editingUser._id}`,
+        `${import.meta.env.VITE_API_URL}/api/admin/users/${editingUser._id}`,
         editingUser,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -242,7 +242,7 @@ const AdminDashboard = () => {
         return;
       }
 
-      await axios.delete(`${import.meta.env.REACT_APP_API_URL}/api/admin/users/${userId}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/admin/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(users.filter((user) => user._id !== userId));

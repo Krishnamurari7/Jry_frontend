@@ -31,7 +31,7 @@ const AddUserModal = ({ isOpen, onClose, onUserAdded }) => {
     try {
       const token = localStorage.getItem("adminToken");
       const response = await axios.post(
-        `${import.meta.env.REACT_APP_API_URL}/api/admin/users`,
+        `${import.meta.env.VITE_API_URL}/api/admin/users`,
         formData,
         {
           headers: { Authorization: `Bearer ${token}` }
