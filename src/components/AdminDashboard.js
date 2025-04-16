@@ -66,14 +66,14 @@ const AdminDashboard = () => {
 
       // console.log("Fetching users with token:", token);
       const response = await axios.get(
-        `${import.meta.env.REACT_APP_API_URL}/api/admin/users`,
+        `${import.meta.env.VITE_API_URL}/api/admin/users/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
         }
-      );
+      );      
 
       // console.log("Users response:", response.data);
 
