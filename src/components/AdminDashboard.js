@@ -66,7 +66,7 @@ const AdminDashboard = () => {
 
       // console.log("Fetching users with token:", token);
       const response = await axios.get(
-        "http://localhost:5000/api/admin/users",
+        `${import.meta.env.REACT_APP_API_URL}/api/admin/users`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -164,7 +164,7 @@ const AdminDashboard = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:5000/api/admin/users",
+        `${import.meta.env.REACT_APP_API_URL}/api/admin/users`,
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -208,7 +208,7 @@ const AdminDashboard = () => {
       }
 
       const response = await axios.put(
-        `http://localhost:5000/api/admin/users/${editingUser._id}`,
+        `${import.meta.env.REACT_APP_API_URL}/api/admin/users/${editingUser._id}`,
         editingUser,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -242,7 +242,7 @@ const AdminDashboard = () => {
         return;
       }
 
-      await axios.delete(`http://localhost:5000/api/admin/users/${userId}`, {
+      await axios.delete(`${import.meta.env.REACT_APP_API_URL}/api/admin/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(users.filter((user) => user._id !== userId));

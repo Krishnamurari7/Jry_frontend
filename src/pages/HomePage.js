@@ -14,7 +14,7 @@ const HomePage = () => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/users/search?email=${searchEmail}`
+        `${import.meta.env.REACT_APP_API_URL}/api/users/search?email=${searchEmail}`
       );
       setSearchResult(response.data);
       setError("");

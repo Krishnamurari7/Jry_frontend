@@ -9,7 +9,7 @@ const AdminMessages = () => {
     const fetchQueries = async () => {
       try {
         const token = localStorage.getItem("adminToken");
-        const res = await axios.get("http://localhost:5000/api/queries/admin-queries", {
+        const res = await axios.get(`${import.meta.env.REACT_APP_API_URL}/api/queries/admin-queries`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setQueries(res.data);

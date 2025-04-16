@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(false); 
 
   // Configure axios defaults
-  axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+  axios.defaults.baseURL = import.meta.env.REACT_APP_API_URL || 'http://localhost:5000';
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
